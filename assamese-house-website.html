@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assamese-style House Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to right, #8EC5FC, #E0C3FC); /* Background gradient */
+            flex-direction: column;
+            overflow: hidden; /* Prevents scrollbars */
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8); /* Light overlay to make text readable */
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        #houseImage {
+            max-width: 80%;
+            height: auto;
+            border: 5px solid #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow for the image */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Assamese-style House</h1>
+        <h4>Refresh to see new image</h4>
+        <img id="houseImage" alt="Assamese-style house">
+    </div>
+
+    <script>
+        // Array of image paths relative to the project folder
+        const images = [
+            'images/1.jfif', 
+            'images/2.jfif',
+            'images/3.jfif',
+            'images/4.webp',
+            'images/5.webp',
+            'images/6.jpg',
+            'images/7.jpg',
+            'images/8.jpg',
+            'images/9.jpg',
+        ];
+
+        // Function to update the image source with a random image from the array
+        function updateImage() {
+            const randomIndex = Math.floor(Math.random() * images.length);
+            document.getElementById('houseImage').src = images[randomIndex];
+        }
+
+        // Update image on page load
+        updateImage();
+
+        // Optional: Update image when the page is refreshed
+        window.addEventListener('beforeunload', updateImage);
+    </script>
+</body>
+</html>
