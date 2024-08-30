@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(to right, #FFD194, #D1913C);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        #catImage {
+            max-width: 100%;
+            height: auto;
+            border: 5px solid #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+        #newImageBtn, .nav-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .nav-button {
+            background-color: #333;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cat Image Gallery</h1>
+        <img id="catImage" alt="Cat">
+        <br>
+        <button id="newImageBtn">Generate New Image</button>
+        <br>
+        <button class="nav-button" onclick="window.location.href='index.html'">Go to Houses</button>
+    </div>
+
+    <script>
+        const catImages = [
+            'cats/cat1.jpg',
+            'cats/cat2.jpg',
+            'cats/cat3.jpg',
+            'cats/cat4.jpg',
+            'cats/cat5.jpg',
+        ];
+
+        function updateImage() {
+            const randomIndex = Math.floor(Math.random() * catImages.length);
+            document.getElementById('catImage').src = catImages[randomIndex];
+        }
+
+        // Update image on page load
+        updateImage();
+
+        // Add click event listener to the button
+        document.getElementById('newImageBtn').addEventListener('click', updateImage);
+    </script>
+</body>
+</html>
