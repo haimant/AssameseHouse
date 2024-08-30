@@ -3,49 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assamese-style House Generator</title>
+    <title>Image Generator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
-            background: linear-gradient(to right, #8EC5FC, #E0C3FC); /* Background gradient */
-            flex-direction: column;
-            overflow: hidden; /* Prevents scrollbars */
+            background: linear-gradient(to right, #8EC5FC, #E0C3FC);
+            padding: 20px;
+            box-sizing: border-box;
         }
         .container {
             text-align: center;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.8); /* Light overlay to make text readable */
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            width: 100%;
         }
         h1 {
             color: #333;
             margin-bottom: 20px;
+            font-size: 24px;
         }
-        #houseImage {
-            max-width: 80%;
+        #imageDisplay {
+            max-width: 100%;
             height: auto;
             border: 5px solid #333;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow for the image */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+        #newImageBtn {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .nav {
+            margin-bottom: 20px;
+        }
+        .nav button {
+            background-color: #333;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 0 10px;
+            border-radius: 5px;
+        }
+        .nav button.active {
+            background-color: #4CAF50;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Assamese-style House</h1>
-        <h4>Refresh to see new image</h4>
-        <img id="houseImage" alt="Assamese-style house">
+        <div class="nav">
+            <button id="housesBtn" class="active">Houses</button>
+            <button id="catsBtn">Cats</button>
+        </div>
+        <h1 id="title">Assamese-style House Generator</h1>
+        <img id="imageDisplay" alt="Image">
+        <br>
+        <button id="newImageBtn">Generate New Image</button>
     </div>
 
     <script>
-        // Array of image paths relative to the project folder
-        const images = [
+        const houseImages = [
             'images/1.jfif', 
             'images/2.jfif',
             'images/3.jfif',
@@ -57,17 +93,42 @@
             'images/9.jpg',
         ];
 
-        // Function to update the image source with a random image from the array
+        const catImages = [
+            'cats/cat1.jpg',
+            'cats/cat2.jpg',
+            'cats/cat3.jpg',
+            'cats/cat4.jpg',
+            'cats/cat5.jpg',
+        ];
+
+        let currentImages = houseImages;
+
         function updateImage() {
-            const randomIndex = Math.floor(Math.random() * images.length);
-            document.getElementById('houseImage').src = images[randomIndex];
+            const randomIndex = Math.floor(Math.random() * currentImages.length);
+            document.getElementById('imageDisplay').src = currentImages[randomIndex];
         }
 
-        // Update image on page load
+        document.getElementById('housesBtn').addEventListener('click', () => {
+            currentImages = houseImages;
+            document.getElementById('title').textContent = 'Assamese-style House Generator';
+            document.getElementById('housesBtn').classList.add('active');
+            document.getElementById('catsBtn').classList.remove('active');
+            updateImage();
+        });
+
+        document.getElementById('catsBtn').addEventListener('click', () => {
+            currentImages = catImages;
+            document.getElementById('title').textContent = 'Cat Image Gallery';
+            document.getElementById('catsBtn').classList.add('active');
+            document.getElementById('housesBtn').classList.remove('active');
+            updateImage();
+        });
+
+        // Initial image load
         updateImage();
 
-        // Optional: Update image when the page is refreshed
-        window.addEventListener('beforeunload', updateImage);
+        // Add click event listener to the button
+        document.getElementById('newImageBtn').addEventListener('click', updateImage);
     </script>
 </body>
 </html>
