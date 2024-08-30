@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-24BMVXD4P2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-24BMVXD4P2');
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Generator</title>
@@ -81,7 +72,7 @@
     <div class="container">
         <div class="nav">
             <button id="housesBtn" class="active">Houses</button>
-            <button id="catsBtn">Cats</button>
+            <button id="catsBtn">Musical Instruments</button>
         </div>
         <h1 id="title">Assamese-style House Generator</h1>
         <img id="imageDisplay" alt="Image">
@@ -103,11 +94,11 @@
         ];
 
         const catImages = [
-            'cats/cat1.jpg',
-            'cats/cat2.jpg',
-            'cats/cat3.jpg',
-            'cats/cat4.jpg',
-            'cats/cat5.jpg',
+            'instruments/cat1.jfif',
+            'instruments/cat2.jfif',
+            'instruments/cat3.jfif',
+            'instruments/cat4.jfif',
+            'instruments/cat5.jfif',
         ];
 
         let currentImages = houseImages;
@@ -127,7 +118,7 @@
 
         document.getElementById('catsBtn').addEventListener('click', () => {
             currentImages = catImages;
-            document.getElementById('title').textContent = 'Cat Image Gallery';
+            document.getElementById('title').textContent = 'Musical Instruments';
             document.getElementById('catsBtn').classList.add('active');
             document.getElementById('housesBtn').classList.remove('active');
             updateImage();
@@ -141,3 +132,4 @@
     </script>
 </body>
 </html>
+
